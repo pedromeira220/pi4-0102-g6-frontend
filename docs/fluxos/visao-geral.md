@@ -8,10 +8,10 @@ O escopo não mudou desde a Entrega 1: os fluxos cobrem os entregáveis E1 a E6 
 
 | Módulo | O que faz | Tecnologia | Repositório | Responsável |
 |---|---|---|---|---|
-| Frontend | Página do cliente (senha, etapa, estimativa e aviso de pronto) e página `/demo`, que reinicia a fila de demonstração | React | pi4-0102-g6-frontend | a definir |
-| Backend 1 | Responde às consultas de pedido por HTTP, roda o simulador da fila de demonstração e avisa o Backend 2 a cada mudança de etapa | Java (Spring Boot) | pi4-0102-g6-backend-1 | a definir |
-| Backend 2 | Recebe os avisos do Backend 1 por Socket, no molde do Fazedor de Continhas, e os repassa às páginas abertas por WebSocket | Java (Spring Boot e `java.net.Socket`) | pi4-0102-g6-backend-2 | a definir |
-| Banco | Guarda os pedidos | PostgreSQL | junto do Backend 1 | a definir |
+| Frontend | Página do cliente (senha, etapa, estimativa e aviso de pronto) e página `/demo`, que reinicia a fila de demonstração | React | pi4-0102-g6-frontend | Neilton e Pedro |
+| Backend 1 | Responde às consultas de pedido por HTTP, roda o simulador da fila de demonstração e avisa o Backend 2 a cada mudança de etapa | Java (Spring Boot) | pi4-0102-g6-backend-1 | Murilo e João |
+| Backend 2 | Recebe os avisos do Backend 1 por Socket, no molde do Fazedor de Continhas, e os repassa às páginas abertas por WebSocket | Java (Spring Boot e `java.net.Socket`) | pi4-0102-g6-backend-2 | Patrick e Pedro |
+| Banco | Guarda os pedidos | PostgreSQL | junto do Backend 1 | Pedro |
 
 O sistema não usa serviço externo.
 
