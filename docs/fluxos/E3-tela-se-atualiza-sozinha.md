@@ -12,6 +12,8 @@
 6. O Backend 2 repassa a mensagem etapaAlterada (CT6) para as páginas inscritas no canal do pedido 42.
 7. O Frontend troca a etapa na tela, sem o cliente tocar em nada.
 
+A posição na fila também se atualiza sozinha. Quando um pedido à frente do 42 vira pronto ou encerrado, o Backend 1 envia etapaGravada (CT4) para o pedido 42 com a posição nova, o Backend 2 repassa etapaAlterada (CT6), e o Frontend troca a posição na tela.
+
 ## Diagrama
 
 ```mermaid

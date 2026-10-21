@@ -1,15 +1,15 @@
 # Visão geral
 
-Sistema de acompanhamento de pedidos para praças de alimentação. O cliente abre a página pelo QR code, digita a senha do pedido e acompanha a etapa e a estimativa de tempo, que se atualizam sozinhas.
+Sistema de acompanhamento de pedidos para praças de alimentação. O cliente abre a página pelo QR code, digita a senha do pedido e acompanha a etapa, a estimativa de tempo e a posição na fila, que se atualizam sozinhas.
 
-O escopo não mudou desde a Entrega 1: os fluxos cobrem os entregáveis E1 a E6 da tabela de escopo.
+Os fluxos cobrem os entregáveis E1 a E6 da tabela de escopo. Um acréscimo desde a Entrega 1: o E4 passa a mostrar também a posição do pedido na fila.
 
 ## Módulos
 
 | Módulo | O que faz | Tecnologia | Repositório | Responsável |
 |---|---|---|---|---|
-| Frontend | Página do cliente (senha, etapa, estimativa e aviso de pronto) e página `/demo`, que reinicia a fila de demonstração | React | pi4-0102-g6-frontend | Neilton e Pedro |
-| Backend 1 | Responde às consultas de pedido por HTTP, roda o simulador da fila de demonstração e avisa o Backend 2 a cada mudança de etapa | Java (Spring Boot) | pi4-0102-g6-backend-1 | Murilo e João |
+| Frontend | Página do cliente (senha, etapa, estimativa, posição na fila e aviso de pronto) e página `/demo`, que reinicia a fila de demonstração | React e TypeScript | pi4-0102-g6-frontend | Neilton e Pedro |
+| Backend 1 | Responde às consultas de pedido por HTTP, roda o simulador da fila de demonstração e calcula a posição de cada pedido na fila e avisa o Backend 2 a cada mudança de etapa ou de posição | Java (Spring Boot) | pi4-0102-g6-backend-1 | Murilo e João |
 | Backend 2 | Recebe os avisos do Backend 1 por Socket, no molde do Fazedor de Continhas, e os repassa às páginas abertas por WebSocket | Java (Spring Boot e `java.net.Socket`) | pi4-0102-g6-backend-2 | Patrick e Pedro |
 | Banco | Guarda os pedidos | PostgreSQL | junto do Backend 1 | Pedro |
 
@@ -23,7 +23,7 @@ flowchart TD
     apresentador(["Apresentador<br/>reinicia a fila de demonstração"])
 
     subgraph sistema["Sistema de Gestão de Filas"]
-        front["Frontend<br/>React<br/>página do cliente e página /demo"]
+        front["Frontend<br/>React e TypeScript<br/>página do cliente e página /demo"]
         b1["Backend 1<br/>Java, Spring Boot<br/>consulta de pedidos e simulador da fila"]
         b2["Backend 2<br/>Java, Spring Boot<br/>repassa as mudanças de etapa às páginas"]
         banco[("Banco<br/>PostgreSQL<br/>tabela pedido")]
@@ -40,7 +40,7 @@ flowchart TD
 
 ## Convenção de nomes
 
-Nas mensagens entre módulos usamos camelCase (`senha`, `estimativaMinutos`, `atualizadoEm`). No banco usamos snake_case (`criado_em`, `atualizado_em`). Nome de operação é verbo no infinitivo mais o objeto (`consultarPedido`, `reiniciarDemo`, `acompanharPedido`). Nome de mensagem de aviso é o objeto mais o que aconteceu (`etapaGravada`, `etapaAlterada`).
+Nas mensagens entre módulos usamos camelCase (`senha`, `estimativaMinutos`, `posicaoNaFila`, `atualizadoEm`). No banco usamos snake_case (`criado_em`, `atualizado_em`). Nome de operação é verbo no infinitivo mais o objeto (`consultarPedido`, `reiniciarDemo`, `acompanharPedido`). Nome de mensagem de aviso é o objeto mais o que aconteceu (`etapaGravada`, `etapaAlterada`).
 
 ## Fluxos
 

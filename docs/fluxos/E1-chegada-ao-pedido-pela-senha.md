@@ -8,7 +8,7 @@
 2. O cliente digita a senha 42.
 3. O Frontend chama o Backend 1 com a operação consultarPedido (CT1).
 4. O Backend 1 busca o pedido de senha 42 na tabela pedido (CT2).
-5. O Backend 1 responde ao Frontend com a senha, a etapa e a data e hora da última mudança.
+5. O Backend 1 responde ao Frontend com a senha, a etapa, a posição na fila (quando o pedido ainda está na fila) e a data e hora da última mudança.
 6. O Frontend mostra a senha 42 e a etapa escrita por extenso (por exemplo, "Em preparo").
 
 Se a senha não existe, o Backend 1 devolve o erro PEDIDO_NAO_ENCONTRADO (CT1), e o Frontend mostra "Pedido não encontrado, confira o número na sua senha".
@@ -25,7 +25,7 @@ sequenceDiagram
     Frontend->>B1: CT1 consultarPedido
     B1->>Banco: CT2 pedido (busca pela senha)
     Banco-->>B1: pedido 42
-    B1-->>Frontend: senha, etapa, atualizadoEm
+    B1-->>Frontend: senha, etapa, posicaoNaFila, atualizadoEm
     Frontend-->>Cliente: mostra "Senha 42: Em preparo"
 ```
 
