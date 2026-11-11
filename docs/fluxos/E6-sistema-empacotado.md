@@ -4,7 +4,7 @@
 
 ## Passos
 
-1. O avaliador clona o repositório e roda `docker compose up`.
+1. O avaliador clona os quatro repositórios lado a lado, como manda o README, entra em `pi4-2026-2-0102-grupo06` e roda `docker compose up`. O `docker-compose.yml` fica nesse repositório.
 2. O Docker Compose sobe o Banco, o Backend 1, o Backend 2 e o Frontend.
 3. O avaliador abre o README, que diz a URL, onde está o QR de teste e qual senha usar.
 4. O avaliador lê o QR de teste com o celular e digita a senha indicada no README.
