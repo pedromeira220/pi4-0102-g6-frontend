@@ -5,7 +5,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import type { Stage } from "@/types";
+import type { Order, Stage } from "@/types";
 
 const STAGE_NAME: Record<Stage, string> = {
   received: "Recebido",
@@ -34,15 +34,7 @@ function Metric({ value, label }: { value: string; label: string }) {
   );
 }
 
-type Props = {
-  ticket: number;
-  stage: Stage;
-  estimatedMinutes?: number;
-  queuePosition?: number;
-  updatedAt: string;
-};
-
-export default function OrderTracking({ ticket, stage, estimatedMinutes, queuePosition, updatedAt }: Props) {
+export default function OrderTracking({ ticket, stage, estimatedMinutes, queuePosition, updatedAt }: Order) {
   const isReady = stage === "ready";
   const isClosed = stage === "closed";
   const tone = isReady ? "ready" : isClosed ? "closed" : "neutral";
@@ -75,8 +67,8 @@ export default function OrderTracking({ ticket, stage, estimatedMinutes, queuePo
 
           {!isReady && !isClosed && (
             <div className="grid grid-cols-2 gap-3">
-              <Metric value={`${estimatedMinutes} min`} label="estimativa" />
-              <Metric value={`${queuePosition}º`} label="da fila" />
+              <Metric value={estimatedMinutes != null ? `${estimatedMinutes} min` : "–"} label="estimativa" />
+              <Metric value={queuePosition != null ? `${queuePosition}º` : "–"} label="da fila" />
             </div>
           )}
           {isReady && <p className="rounded-xl bg-muted px-3 py-5 text-center text-2xl font-bold">pode retirar</p>}
