@@ -25,9 +25,10 @@ function formatTime(iso: string) {
   return new Date(iso).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
 }
 
-function Metric({ value, label }: { value: string; label: string }) {
+function Metric({ prefix, value, label }: { prefix?: string; value: string; label: string }) {
   return (
     <div className="rounded-xl bg-muted px-3 py-4 text-center">
+      {prefix && <p className="text-sm text-muted-foreground">{prefix}</p>}
       <p className="text-3xl font-bold tabular-nums">{value}</p>
       <p className="text-sm text-muted-foreground">{label}</p>
     </div>
@@ -67,7 +68,7 @@ export default function OrderTracking({ ticket, stage, estimatedMinutes, queuePo
 
           {!isReady && !isClosed && (
             <div className="grid grid-cols-2 gap-3">
-              <Metric value={estimatedMinutes != null ? `${estimatedMinutes} min` : "–"} label="estimativa" />
+              <Metric prefix="Cerca de" value={estimatedMinutes != null ? `${estimatedMinutes} min` : "–"} label="para ficar pronto" />
               <Metric value={queuePosition != null ? `${queuePosition}º` : "–"} label="da fila" />
             </div>
           )}
