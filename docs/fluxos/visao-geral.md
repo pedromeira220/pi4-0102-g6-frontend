@@ -8,7 +8,7 @@ Os fluxos cobrem os entregáveis E1 a E6 da tabela de escopo. Um acréscimo desd
 
 | Módulo | O que faz | Tecnologia | Repositório | Responsável |
 |---|---|---|---|---|
-| Frontend | Página do cliente (senha, etapa, estimativa, posição na fila e aviso de pronto) e página `/demo`, que reinicia a fila de demonstração | React e TypeScript | pi4-0102-g6-frontend | Neilton e Pedro |
+| Frontend | Página do cliente (senha, etapa, estimativa, posição na fila e aviso de pronto) página `/demo`, que reinicia a fila de demonstração, e o protótipo do painel da cozinha (`/prototipo-fluxo`) | React e TypeScript | pi4-0102-g6-frontend | Neilton e Pedro |
 | Backend 1 | Responde às consultas de pedido por HTTP, roda o simulador da fila de demonstração e calcula a posição de cada pedido na fila e avisa o Backend 2 a cada mudança de etapa ou de posição | Java (Spring Boot) | pi4-0102-g6-backend-1 | Murilo e João |
 | Backend 2 | Recebe os avisos do Backend 1 por Socket, no molde do Fazedor de Continhas, e os repassa às páginas abertas por WebSocket | Java (Spring Boot e `java.net.Socket`) | pi4-0102-g6-backend-2 | Patrick e Pedro |
 | Banco | Guarda os pedidos | PostgreSQL | junto do Backend 1 | Pedro |
@@ -61,3 +61,5 @@ Nas mensagens entre módulos usamos camelCase (`senha`, `estimativaMinutos`, `po
 | CT4 | [etapaGravada](https://github.com/pedromeira220/pi4-0102-g6-backend-1/blob/main/docs/contratos/CT4-etapaGravada.md) | Socket TCP | pi4-0102-g6-backend-1 |
 | CT5 | [acompanharPedido](https://github.com/pedromeira220/pi4-0102-g6-backend-2/blob/main/docs/contratos/CT5-acompanharPedido.md) | WebSocket | pi4-0102-g6-backend-2 |
 | CT6 | [etapaAlterada](https://github.com/pedromeira220/pi4-0102-g6-backend-2/blob/main/docs/contratos/CT6-etapaAlterada.md) | WebSocket | pi4-0102-g6-backend-2 |
+| CT7 | [painel](https://github.com/pedromeira220/pi4-0102-g6-backend-1/blob/main/docs/contratos/CT7-painel.md) | HTTP | pi4-0102-g6-backend-1 |
+| CT8 | [mudarRitmo](https://github.com/pedromeira220/pi4-0102-g6-backend-1/blob/main/docs/contratos/CT8-mudarRitmo.md) | HTTP | pi4-0102-g6-backend-1 |
